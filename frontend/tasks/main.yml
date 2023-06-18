@@ -1,1 +1,3 @@
-- name: test taskkk
+- name: test task
+  debug:
+    msg: Hello world
