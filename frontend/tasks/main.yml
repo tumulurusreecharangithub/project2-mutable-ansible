@@ -1,7 +1,7 @@
 - name: Install nginx
   ansible.builtin.yum:
     name: ngnix
-    state: Installed
+    state: installed
 
 - name: Remove old HTML Content
   ansible.builtin.file:
