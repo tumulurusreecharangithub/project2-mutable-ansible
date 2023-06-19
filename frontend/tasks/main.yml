@@ -1,3 +1,27 @@
-- name: test task
-  debug:
-    msg: Hello world
+- name: Install nginx
+  ansible.builtin.yum:
+    name: ngnix
+    state: Installed
+
+- name: Remove old HTML Content
+  ansible.builtin.file:
+    path: /usr/share/ngnix/html
+    state: absent
+
+- name: Download frontend content and extract it
+  ansible.builtin.unarchive:
+    src: "https://github.com/roboshop-devops-project/frontend/archive/main.git"
+    dest: /tmp
+    remote_src: yes
+
+- name: copy frontend content
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Restart nginx service
+  ansible.builtin.systemd:
+   state: restarted
+   name: nginx
+
