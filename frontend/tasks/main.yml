@@ -1,11 +1,11 @@
 - name: Install nginx
   ansible.builtin.yum:
-    name: ngnix
+    name: nginx
     state: installed
 
 - name: Remove old HTML Content
   ansible.builtin.file:
-    path: /usr/share/ngnix/html
+    path: /usr/share/nginx/html
     state: absent
 
 - name: Download frontend content and extract it
